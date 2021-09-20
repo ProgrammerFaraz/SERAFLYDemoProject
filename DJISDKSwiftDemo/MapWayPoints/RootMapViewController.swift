@@ -199,7 +199,7 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
         let projectDialog = AddProjectDialogViewController(nibName: "AddProjectDialogViewController", bundle: nil)
         let popup = PopupDialog(viewController: projectDialog,
                                 buttonAlignment: .vertical,
-                                transitionStyle: .bounceDown,
+                                transitionStyle: .zoomIn,
                                 tapGestureDismissal: true,
                                 panGestureDismissal: true)
         present(popup, animated: true, completion: nil)
@@ -207,6 +207,7 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
             self.addWaypoints()
             self.parameterImageView.isHidden = true
             sender.isHidden = true
+            popup.dismiss(animated: true, completion: nil)
         }
     }
     

@@ -8,6 +8,7 @@
 
 import Foundation
 import SideMenu
+import SCLAlertView
 
 class Utilities {
     

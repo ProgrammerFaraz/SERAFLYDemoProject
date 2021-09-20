@@ -22,7 +22,15 @@ class AddProjectDialogViewController: UIViewController {
     }
 
     @IBAction func continueBtnAction(_ sender: UIButton) {
-        continueCallBack?(titleTextField.text ?? "")
+        if titleTextField.text != "" {
+            continueCallBack?(titleTextField.text ?? "")
+        }else{
+            Snackbar.show(message: "Enter Project Name", duration: .short)
+        }
+    }
+    
+    @IBAction func closeBtnTapped(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
