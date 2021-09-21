@@ -58,6 +58,8 @@
 		D0E84E0A26DEAC9100BCF3CB /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E84E0926DEAC9100BCF3CB /* Networking.swift */; };
 		D0E84E0C26DEB0DD00BCF3CB /* Snackbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E84E0B26DEB0DD00BCF3CB /* Snackbar.swift */; };
 		D0E84E0E26DEB1CA00BCF3CB /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E84E0D26DEB1CA00BCF3CB /* UserDefaultsHelper.swift */; };
+		D0EBD50126FA31BD0068480C /* NewTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EBD50026FA31BD0068480C /* NewTemplateViewController.swift */; };
+		D0EBD50326FA32660068480C /* NewTemplateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EBD50226FA32660068480C /* NewTemplateTableViewCell.swift */; };
 		D0EC9F6526CEBFEC00A04C37 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0EC9F6426CEBFEC00A04C37 /* Home.storyboard */; };
 		FA0E010D25989F5100FA8675 /* PolyLineMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0E010C25989F5100FA8675 /* PolyLineMapController.swift */; };
 		FA15D2E72595D75D0034E9EB /* DemoUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA15D2E62595D75D0034E9EB /* DemoUtility.swift */; };
@@ -139,6 +141,8 @@
 		D0E84E0926DEAC9100BCF3CB /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		D0E84E0B26DEB0DD00BCF3CB /* Snackbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snackbar.swift; sourceTree = "<group>"; };
 		D0E84E0D26DEB1CA00BCF3CB /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
+		D0EBD50026FA31BD0068480C /* NewTemplateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTemplateViewController.swift; sourceTree = "<group>"; };
+		D0EBD50226FA32660068480C /* NewTemplateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTemplateTableViewCell.swift; sourceTree = "<group>"; };
 		D0EC9F6426CEBFEC00A04C37 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		FA0E010C25989F5100FA8675 /* PolyLineMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyLineMapController.swift; sourceTree = "<group>"; };
 		FA15D2E62595D75D0034E9EB /* DemoUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoUtility.swift; sourceTree = "<group>"; };
@@ -429,6 +433,7 @@
 			isa = PBXGroup;
 			children = (
 				D03ADEBE26E443AB00CCA9E4 /* ProjectTableViewCell.swift */,
+				D0EBD50226FA32660068480C /* NewTemplateTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -562,6 +567,7 @@
 				D0562FF126D2ABCA00904D88 /* NewHomeViewController.swift */,
 				D0562FF526D2B15200904D88 /* ProjectsViewController.swift */,
 				D0562FF326D2B14900904D88 /* QuickAccessViewController.swift */,
+				D0EBD50026FA31BD0068480C /* NewTemplateViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -763,7 +769,6 @@
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
-				"${BUILT_PRODUCTS_DIR}/SCLAlertView/SCLAlertView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/TTGSnackbar/TTGSnackbar.framework",
@@ -781,7 +786,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCLAlertView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTGSnackbar.framework",
@@ -847,6 +851,7 @@
 				A47868E1209AC6DA00DBC666 /* StartupViewController.swift in Sources */,
 				D0E84E0C26DEB0DD00BCF3CB /* Snackbar.swift in Sources */,
 				18DF33FB26DA37DE0041CC0C /* Bootstrapper.swift in Sources */,
+				D0EBD50126FA31BD0068480C /* NewTemplateViewController.swift in Sources */,
 				D07CF6EF26D8DD8200C0EF1C /* CheckYourEmailViewController.swift in Sources */,
 				D0562FEF26D14C3D00904D88 /* StoryboardInitializable.swift in Sources */,
 				FA97EEBE25A097E4006BA621 /* DJILimitSpaceOverlay.swift in Sources */,
@@ -855,6 +860,7 @@
 				FA3C187E258F392B004EE6A1 /* MenuViewController.swift in Sources */,
 				D07CF6EC26D8DD0A00C0EF1C /* SignUpViewController.swift in Sources */,
 				D0562FFD26D2B24300904D88 /* QuickAccessCollectionViewCell.swift in Sources */,
+				D0EBD50326FA32660068480C /* NewTemplateTableViewCell.swift in Sources */,
 				A47868DB209AC6DA00DBC666 /* BluetoothConnectorViewController.swift in Sources */,
 				51AAFCD221FEB35900742997 /* DJIAlert.swift in Sources */,
 				D03ADEBF26E443AB00CCA9E4 /* ProjectTableViewCell.swift in Sources */,

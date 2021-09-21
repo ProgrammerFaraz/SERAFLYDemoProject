@@ -453,7 +453,7 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
             return polylineRenderer
         } else if overlay is MKPolygon {
             let polygonView = MKPolygonRenderer(overlay: overlay)
-            polygonView.fillColor = UIColor.lightGray.withAlphaComponent(0.5)
+            polygonView.fillColor = UIColor.lightGray.withAlphaComponent(0.75)
             return polygonView
         }
         return MKPolylineRenderer(overlay: overlay)
