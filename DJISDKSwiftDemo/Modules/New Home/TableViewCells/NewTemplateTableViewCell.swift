@@ -10,15 +10,18 @@ import UIKit
 
 class NewTemplateTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var titleImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subTitleLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    func configure(image: UIImage, title: String, subTitle: String) {
+        self.titleImageView.image = image
+        self.titleLabel.text = title
+        self.subTitleLabel.text = subTitle
     }
-
 }
