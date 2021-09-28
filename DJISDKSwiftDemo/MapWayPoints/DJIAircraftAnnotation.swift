@@ -70,7 +70,7 @@ class DummyAircraftAnnotation: NSObject, MKAnnotation {
     func animateAircraft(updatedCordinate:CLLocationCoordinate2D , head:Double , completionhandler: @escaping (Bool) -> ()) {
         DispatchQueue.main.async {
             self.updateHeading(head)
-            UIView.animate(withDuration: 2.0, animations: {
+            UIView.animate(withDuration: 5.0, animations: {
                 self.coordinate = updatedCordinate
             }) { (success) in
                 completionhandler(success)

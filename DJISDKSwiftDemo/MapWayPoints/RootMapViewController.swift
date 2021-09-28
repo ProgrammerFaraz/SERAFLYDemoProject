@@ -245,12 +245,14 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
         Utilities.setupSideMenu(fromMap: true, viewController: self)
     }
     
+    //MARK:- Reset Action
     @IBAction func editBtnAction(_ sender: UIButton) {
 //        if isEditingPoints {
         mapController!.cleanAllPoints(with: mapView)
         mapView.removeOverlays(mapView.overlays)
         self.parameterImageView.isHidden = false
         self.createProjectBtn.isHidden = false
+        fourPoints.removeAll()
         //            editBtn.setTitle("Edit", for: .normal)
         mapView.removeAnnotations(mapView.annotations)
         //            mapView.isUserInteractionEnabled = false
@@ -268,6 +270,7 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
         
     }
     
+    //MARK:- Action
     @IBAction func focusMapAction(_ sender: UIButton) {
         guard let userLocation = userLocation else { return }
         if CLLocationCoordinate2DIsValid(userLocation) {
@@ -294,7 +297,7 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     @IBAction func fillGridBtnClicked(_ sender: UIButton) {
         if fourPoints.count > 3 {
             fillGridPath(firstPoint: fourPoints[0], secondPoint: fourPoints[1], thirdPoint: fourPoints[2], fourthPoint: fourPoints[3])
-            fillGridPath(firstPoint: fourPoints[3], secondPoint: fourPoints[2], thirdPoint: fourPoints[1], fourthPoint: fourPoints[0])
+            fillGridPath(firstPoint: fourPoints[0], secondPoint: fourPoints[3], thirdPoint: fourPoints[2], fourthPoint: fourPoints[1])
         }else {
             Snackbar.show(message: Constants.morePointsMessage, duration: .short)
         }
@@ -356,15 +359,15 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
                 var pt = [CLLocationCoordinate2D]()
                 let annotations = mapView.annotations
                 //var selectedAnnotations = mapView.selectedAnnotations
-                for x in 0..<annotations.count - 1{
+//                for x in 0..<annotations.count - 1{
                     for ant in annotations{
                         if let pin = ant as? GridAnnotation {
-                            if pin.identifier == x{
+//                            if pin.identifier == x{
                                 pt.append(pin.coordinate)
-                            }
+//                            }
                         }
                     }
-                }
+//                }
                 fourPoints = pt
                 let polygon = MKPolygon(coordinates: pt, count: pt.count)
                 mapView.addOverlay(polygon)
