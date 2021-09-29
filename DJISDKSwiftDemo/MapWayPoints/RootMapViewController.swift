@@ -359,7 +359,7 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
                 var pt = [CLLocationCoordinate2D]()
                 let annotations = mapView.annotations
                 //var selectedAnnotations = mapView.selectedAnnotations
-//                for x in 0..<annotations.count - 1{
+//                for x in 0..<annotations.count - 1 {
                     for ant in annotations{
                         if let pin = ant as? GridAnnotation {
 //                            if pin.identifier == x{
@@ -403,7 +403,7 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
             //pinView.pinTintColor = .purple
             pinView.image = UIImage(named:"add.png")
             pinView.contentMode = .scaleAspectFit
-            pinView.canShowCallout = true
+            pinView.canShowCallout = false
             pinView.isDraggable = true
            // pinView.animatesDrop = true
             return pinView
@@ -432,13 +432,13 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
         switch newState {
         case .starting:
             print("Point Dragging Started")
-            drawGrid()
+//            drawGrid()
         case .dragging:
             print("Point Dragging is dragging")
-            drawGrid()
+//            drawGrid()
         case .canceling, .ending:
-            print("Poinbt Dragging Canclled")
-            drawGrid()
+            print("Point Dragging Canceled")
+//            drawGrid()
         default:
             print("Point Dragging Default case executed")
         }
@@ -451,7 +451,7 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolyline {
             let polylineRenderer = MKPolylineRenderer(overlay: overlay)
-            polylineRenderer.strokeColor = .blue
+            polylineRenderer.strokeColor = .green
             polylineRenderer.lineWidth = 1
             return polylineRenderer
         } else if overlay is MKPolygon {
