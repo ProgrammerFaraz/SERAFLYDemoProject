@@ -54,6 +54,7 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     @IBOutlet weak var parameterImageView: UIImageView!
     var mapController: DJIMapController?
     var tapGesture: UITapGestureRecognizer?
+    var isSecondPathToFly = false
     
     // Use for current locatino detection
     var locationManager: CLLocationManager?
@@ -201,6 +202,7 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     func fillGrid() {
         if fourPoints.count > 3 {
             fillGridPath(firstPoint: fourPoints[0], secondPoint: fourPoints[1], thirdPoint: fourPoints[2], fourthPoint: fourPoints[3])
+            isSecondPathToFly = true
             fillGridPath(firstPoint: fourPoints[1], secondPoint: fourPoints[2], thirdPoint: fourPoints[3], fourthPoint: fourPoints[0])
         }else {
             Snackbar.show(message: Constants.morePointsMessage, duration: .short)
@@ -268,6 +270,7 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     @IBAction func editBtnAction(_ sender: UIButton) {
 //        if isEditingPoints {
         mapController!.cleanAllPoints(with: mapView)
+        dummySimulatorFlyPath.removeAll()
         mapView.removeOverlays(mapView.overlays)
         self.parameterImageView.isHidden = false
         self.createProjectBtn.isHidden = false
@@ -449,11 +452,13 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
         switch newState {
         case .starting:
             print("Point Dragging Started")
+            view.dragState = .dragging
 //            drawGrid()
         case .dragging:
             print("Point Dragging is dragging")
 //            drawGrid()
         case .canceling, .ending:
+            view.dragState = .none
             print("Point Dragging Canceled")
 //            drawGrid()
         default:
@@ -517,7 +522,12 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
                 top = true
             }
         }
-        self.dummySimulatorFlyPath = gridFillarray
+        if isSecondPathToFly {
+            self.dummySimulatorFlyPath.append(contentsOf: gridFillarray.reversed())
+            isSecondPathToFly = false
+        }else {
+            self.dummySimulatorFlyPath.append(contentsOf: gridFillarray)
+        }
         let polyline = MKPolyline(coordinates: gridFillarray, count: gridFillarray.count)
         mapView.addOverlay(polyline)
         
