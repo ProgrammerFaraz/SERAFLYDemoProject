@@ -204,8 +204,27 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
             fillGridPath(firstPoint: fourPoints[0], secondPoint: fourPoints[1], thirdPoint: fourPoints[2], fourthPoint: fourPoints[3])
             isSecondPathToFly = true
             fillGridPath(firstPoint: fourPoints[1], secondPoint: fourPoints[2], thirdPoint: fourPoints[3], fourthPoint: fourPoints[0])
+            addDroneSimulator()
         }else {
             Snackbar.show(message: Constants.morePointsMessage, duration: .short)
+        }
+    }
+    
+    func addDroneSimulator() {
+        guard let userLocation = gridPoints.first else { return }
+        if CLLocationCoordinate2DIsValid(userLocation) {
+            var region = MKCoordinateRegion()
+            region.center = userLocation
+            //  region.center = droneLocation!
+            region.span.latitudeDelta = 0.001
+            region.span.longitudeDelta = 0.001
+            
+            if dummySimulatorAnnotation == nil {
+                dummySimulatorAnnotation = DummyAircraftAnnotation(coordinate: userLocation)
+                mapView.addAnnotation(dummySimulatorAnnotation!)
+                mapView?.setRegion(region, animated: true)
+                mapView.showsUserLocation = true
+            }
         }
     }
     
@@ -223,7 +242,7 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
             self.addWaypoints() { [weak self] in
                 guard let self = self else { return }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                    self.drawGrid()
+                    self.drawGrid()
                 }
             }
             self.parameterImageView.isHidden = true
@@ -275,6 +294,8 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
         self.parameterImageView.isHidden = false
         self.createProjectBtn.isHidden = false
         fourPoints.removeAll()
+        gridPoints.removeAll()
+        dummySimulatorAnnotation = nil
         //            editBtn.setTitle("Edit", for: .normal)
         mapView.removeAnnotations(mapView.annotations)
         //            mapView.isUserInteractionEnabled = false
@@ -294,26 +315,11 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     
     //MARK:- Action
     @IBAction func focusMapAction(_ sender: UIButton) {
-        guard let userLocation = userLocation else { return }
-        if CLLocationCoordinate2DIsValid(userLocation) {
-            var region = MKCoordinateRegion()
-            region.center = userLocation
-          //  region.center = droneLocation!
-            region.span.latitudeDelta = 0.001
-            region.span.longitudeDelta = 0.001
-            
-            if dummySimulatorAnnotation == nil {
-                dummySimulatorAnnotation = DummyAircraftAnnotation(coordinate: userLocation)
-                mapView.addAnnotation(dummySimulatorAnnotation!)
-                mapView?.setRegion(region, animated: true)
-                mapView.showsUserLocation = true
-            }
-        }
         
     }
     
     @IBAction func showGidBtnClicked(_ sender: UIButton) {
-        drawGrid()
+//        drawGrid()
     }
     
     @IBAction func fillGridBtnClicked(_ sender: UIButton) {
@@ -371,7 +377,7 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     
     func drawGrid(){
         if self.parameterImageView.isHidden {
-            if fourPoints.count == 0 {
+//            if fourPoints.count == 0 {
                 mapView.removeOverlays(mapView.overlays)
                 var pt = [CLLocationCoordinate2D]()
                 let annotations = mapView.annotations
@@ -391,7 +397,7 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
                 let polygon = MKPolygon(coordinates: hull, count: hull.count)
                 mapView.addOverlay(polygon)
                 fillGrid()
-            }
+//            }
         } else {
             Snackbar.show(message: "Create Project First", duration: .middle)
         }
@@ -448,17 +454,24 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
         return nil
     }
     
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        view.setDragState(.dragging, animated: true)
+    }
+    
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationView.DragState, fromOldState oldState: MKAnnotationView.DragState) {
         switch newState {
         case .starting:
             print("Point Dragging Started")
             view.dragState = .dragging
+            drawGrid()
 //            drawGrid()
         case .dragging:
             print("Point Dragging is dragging")
+            drawGrid()
 //            drawGrid()
         case .canceling, .ending:
             view.dragState = .none
+            drawGrid()
             print("Point Dragging Canceled")
 //            drawGrid()
         default:

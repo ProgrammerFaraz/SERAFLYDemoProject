@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -69,7 +69,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SideMenuTableViewCell" rowHeight="40" id="P7Z-gi-Izs" customClass="SideMenuTableViewCell" customModule="SERAFLY" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="40"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="P7Z-gi-Izs" id="cBD-n7-rxk">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
@@ -330,7 +330,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ProjectTableViewCell" rowHeight="100" id="2aR-SI-hko" customClass="ProjectTableViewCell" customModule="SERAFLY" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="100"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2aR-SI-hko" id="yfQ-gr-m99">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
@@ -616,7 +616,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="NewTemplateTableViewCell" rowHeight="109" id="fJj-U6-aBG" customClass="NewTemplateTableViewCell" customModule="SERAFLY" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="24.5" width="331" height="109"/>
+                                                <rect key="frame" x="0.0" y="28" width="331" height="109"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fJj-U6-aBG" id="UJL-S1-ukh">
                                                     <rect key="frame" x="0.0" y="0.0" width="331" height="109"/>
@@ -749,89 +749,6 @@
                                     <outlet property="delegate" destination="up0-cv-50C" id="QIJ-bA-j7p"/>
                                 </connections>
                             </mapView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vPZ-ch-Crf">
-                                <rect key="frame" x="25" y="150" width="85" height="182"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j5S-R0-esQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="85" height="30"/>
-                                        <color key="backgroundColor" red="0.31916088440000001" green="0.5287007359" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Reset">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="editBtnAction:" destination="up0-cv-50C" eventType="touchUpInside" id="hMm-yt-1go"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X3x-e1-4bi">
-                                        <rect key="frame" x="0.0" y="38" width="85" height="30"/>
-                                        <color key="backgroundColor" systemColor="linkColor"/>
-                                        <state key="normal" title="Focus Map">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="focusMapAction:" destination="up0-cv-50C" eventType="touchUpInside" id="LqB-h9-97Y"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhc-46-ao3">
-                                        <rect key="frame" x="0.0" y="76" width="85" height="30"/>
-                                        <color key="backgroundColor" systemColor="linkColor"/>
-                                        <state key="normal" title="Grid">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="showGidBtnClicked:" destination="up0-cv-50C" eventType="touchUpInside" id="VXe-Yu-bKf"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uEp-AJ-Rgc">
-                                        <rect key="frame" x="0.0" y="114" width="85" height="30"/>
-                                        <color key="backgroundColor" red="0.31916088440000001" green="0.5287007359" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Fill Grid">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="fillGridBtnClicked:" destination="up0-cv-50C" eventType="touchUpInside" id="m6l-f6-C8z"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9no-Ni-hJf">
-                                        <rect key="frame" x="0.0" y="152" width="85" height="30"/>
-                                        <color key="backgroundColor" red="0.31916088440000001" green="0.5287007359" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="TestFly">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="testFlightBtnClicked:" destination="up0-cv-50C" eventType="touchUpInside" id="IVg-pg-FPF"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="85" id="gSb-Gz-m99"/>
-                                </constraints>
-                            </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dCO-Ic-rrN">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
                                 <subviews>
@@ -976,30 +893,68 @@
                                     <action selector="createProjectHereTapped:" destination="up0-cv-50C" eventType="touchUpInside" id="2hs-q7-Atz"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j5S-R0-esQ">
+                                <rect key="frame" x="30" y="170" width="25" height="25"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="j5S-R0-esQ" secondAttribute="height" multiplier="1:1" id="N0Q-lC-Gss"/>
+                                    <constraint firstAttribute="width" constant="25" id="g5w-aV-Aio"/>
+                                </constraints>
+                                <state key="normal" image="reset_icon">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="editBtnAction:" destination="up0-cv-50C" eventType="touchUpInside" id="hMm-yt-1go"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9no-Ni-hJf">
+                                <rect key="frame" x="24" y="210" width="37.5" height="37.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="drone_icon">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="testFlightBtnClicked:" destination="up0-cv-50C" eventType="touchUpInside" id="IVg-pg-FPF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RKv-h7-oLx"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="j4m-Uw-tJU" firstAttribute="leading" secondItem="RKv-h7-oLx" secondAttribute="leading" id="4Dw-9u-T5k"/>
-                            <constraint firstItem="vPZ-ch-Crf" firstAttribute="leading" secondItem="j4m-Uw-tJU" secondAttribute="leading" constant="25" id="Au9-za-oLD"/>
                             <constraint firstItem="j15-Om-NY6" firstAttribute="trailing" secondItem="j4m-Uw-tJU" secondAttribute="trailing" constant="-30" id="BP6-Rv-22g"/>
                             <constraint firstItem="3tS-Zm-0hr" firstAttribute="centerX" secondItem="j4m-Uw-tJU" secondAttribute="centerX" id="Bu3-u0-lqg"/>
                             <constraint firstItem="RKv-h7-oLx" firstAttribute="trailing" secondItem="j4m-Uw-tJU" secondAttribute="trailing" id="Gsb-wp-rru"/>
+                            <constraint firstItem="9no-Ni-hJf" firstAttribute="width" secondItem="j5S-R0-esQ" secondAttribute="width" multiplier="1.5" id="Gzg-Rz-NZQ"/>
                             <constraint firstItem="dCO-Ic-rrN" firstAttribute="leading" secondItem="RKv-h7-oLx" secondAttribute="leading" id="Hi8-cJ-YJN"/>
-                            <constraint firstItem="vPZ-ch-Crf" firstAttribute="top" secondItem="j4m-Uw-tJU" secondAttribute="top" constant="30" id="Mu7-FU-GwQ"/>
                             <constraint firstItem="cyj-er-K1z" firstAttribute="centerX" secondItem="j15-Om-NY6" secondAttribute="centerX" id="N1H-BU-If3"/>
                             <constraint firstItem="Bgc-eD-yUv" firstAttribute="top" secondItem="3tS-Zm-0hr" secondAttribute="bottom" constant="25" id="Oar-rW-mAH"/>
                             <constraint firstItem="cyj-er-K1z" firstAttribute="height" secondItem="j15-Om-NY6" secondAttribute="height" multiplier="1.25" id="PPZ-2Z-EdX"/>
                             <constraint firstItem="RKv-h7-oLx" firstAttribute="trailing" secondItem="dCO-Ic-rrN" secondAttribute="trailing" id="PgP-Az-VoJ"/>
+                            <constraint firstItem="j5S-R0-esQ" firstAttribute="leading" secondItem="j4m-Uw-tJU" secondAttribute="leading" constant="30" id="She-EO-lUA"/>
                             <constraint firstItem="Bgc-eD-yUv" firstAttribute="centerX" secondItem="3tS-Zm-0hr" secondAttribute="centerX" id="Spm-4u-Zth"/>
                             <constraint firstAttribute="bottom" secondItem="j4m-Uw-tJU" secondAttribute="bottom" id="Un5-j4-cye"/>
                             <constraint firstItem="j15-Om-NY6" firstAttribute="bottom" secondItem="j4m-Uw-tJU" secondAttribute="bottom" constant="-45" id="Vrk-ag-R87"/>
                             <constraint firstItem="cyj-er-K1z" firstAttribute="width" secondItem="j15-Om-NY6" secondAttribute="width" multiplier="1.25" id="Vyq-Cr-Si1"/>
                             <constraint firstItem="j4m-Uw-tJU" firstAttribute="top" secondItem="dCO-Ic-rrN" secondAttribute="bottom" id="X1k-m2-G5i"/>
                             <constraint firstItem="dCO-Ic-rrN" firstAttribute="top" secondItem="Xuh-bu-btM" secondAttribute="top" id="dTT-0Y-RhO"/>
+                            <constraint firstItem="j5S-R0-esQ" firstAttribute="top" secondItem="j4m-Uw-tJU" secondAttribute="top" constant="50" id="fN9-dy-Y6t"/>
                             <constraint firstItem="3tS-Zm-0hr" firstAttribute="centerY" secondItem="j4m-Uw-tJU" secondAttribute="centerY" id="fNe-JI-TaC"/>
                             <constraint firstItem="Bgc-eD-yUv" firstAttribute="width" secondItem="j4m-Uw-tJU" secondAttribute="width" multiplier="0.5" id="fdt-YX-jb8"/>
+                            <constraint firstItem="9no-Ni-hJf" firstAttribute="centerX" secondItem="j5S-R0-esQ" secondAttribute="centerX" id="hcA-2k-2zB"/>
                             <constraint firstItem="j15-Om-NY6" firstAttribute="top" secondItem="cyj-er-K1z" secondAttribute="bottom" constant="15" id="jRV-TB-2L5"/>
+                            <constraint firstItem="9no-Ni-hJf" firstAttribute="height" secondItem="j5S-R0-esQ" secondAttribute="height" multiplier="1.5" id="qwb-gc-6of"/>
+                            <constraint firstItem="9no-Ni-hJf" firstAttribute="top" secondItem="j5S-R0-esQ" secondAttribute="bottom" constant="15" id="zfz-uy-vkY"/>
                         </constraints>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
@@ -1013,7 +968,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cWx-zz-Vxn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1980" y="-660"/>
+            <point key="canvasLocation" x="1979.7101449275365" y="-660.26785714285711"/>
         </scene>
     </scenes>
     <resources>
@@ -1022,11 +977,13 @@
         <image name="back" width="240" height="302"/>
         <image name="blue-arrow" width="24.5" height="55.5"/>
         <image name="create_project" width="240" height="302"/>
+        <image name="drone_icon" width="32" height="32"/>
         <image name="earth" width="500" height="200"/>
         <image name="location.fill" catalog="system" width="128" height="121"/>
         <image name="logo1" width="25.5" height="25.5"/>
         <image name="map_menu" width="10.5" height="10.5"/>
         <image name="map_pin_icon" width="9.5" height="12.5"/>
+        <image name="reset_icon" width="50" height="50"/>
         <image name="search_icon_small" width="10.5" height="10.5"/>
         <image name="side_menu_icon" width="38" height="22"/>
         <image name="waypoints" width="452" height="452"/>
@@ -1036,9 +993,6 @@
         <namedColor name="AppLightGray">
             <color red="0.88235294117647056" green="0.88235294117647056" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
