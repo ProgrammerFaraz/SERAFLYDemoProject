@@ -168,19 +168,23 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     }
     
     // MARK: Custom Methods
-    func addWaypoints() {
+    func addWaypoints(completion: @escaping () -> Void) {
 //        guard let point = tapGesture?.location(in: mapView) else { return  }
 
-        var point = [CGPoint]()
+//        var point = [CGPoint]()
         let padding: CGFloat = 100.0
         let imageMargin: CGFloat = 10.0
-        point.append(CGPoint(x: (parameterImageView.frame.origin.x) + imageMargin, y: (parameterImageView.frame.origin.y) - padding + imageMargin))
-        point.append(CGPoint(x: parameterImageView.frame.origin.x + parameterImageView.frame.size.width - imageMargin, y: parameterImageView.frame.origin.y - padding + imageMargin))
-        point.append(CGPoint(x: parameterImageView.frame.origin.x + imageMargin, y: parameterImageView.frame.origin.y + parameterImageView.frame.size.height - padding - imageMargin))
-        point.append(CGPoint(x: parameterImageView.frame.origin.x + parameterImageView.frame.size.width - imageMargin, y: parameterImageView.frame.origin.y + parameterImageView.frame.size.height - padding - imageMargin))
+        let startOne = (CGPoint(x: (parameterImageView.frame.origin.x) + imageMargin, y: (parameterImageView.frame.origin.y) - padding + imageMargin))
+        let startTwo = (CGPoint(x: parameterImageView.frame.origin.x + parameterImageView.frame.size.width - imageMargin, y: parameterImageView.frame.origin.y - padding + imageMargin))
+        let endOne = (CGPoint(x: parameterImageView.frame.origin.x + imageMargin, y: parameterImageView.frame.origin.y + parameterImageView.frame.size.height - padding - imageMargin))
+        let endTwo = (CGPoint(x: parameterImageView.frame.origin.x + parameterImageView.frame.size.width - imageMargin, y: parameterImageView.frame.origin.y + parameterImageView.frame.size.height - padding - imageMargin))
+//        point.append(CGPoint(x: (parameterImageView.frame.origin.x) + imageMargin, y: (parameterImageView.frame.origin.y) - padding + imageMargin))
+//        point.append(CGPoint(x: parameterImageView.frame.origin.x + parameterImageView.frame.size.width - imageMargin, y: parameterImageView.frame.origin.y - padding + imageMargin))
+//        point.append(CGPoint(x: parameterImageView.frame.origin.x + imageMargin, y: parameterImageView.frame.origin.y + parameterImageView.frame.size.height - padding - imageMargin))
+//        point.append(CGPoint(x: parameterImageView.frame.origin.x + parameterImageView.frame.size.width - imageMargin, y: parameterImageView.frame.origin.y + parameterImageView.frame.size.height - padding - imageMargin))
 
 //        if tapGesture?.state == .ended {
-
+        let point = [startOne, endOne, startTwo, endTwo]
 //            if isEditingPoints {
                 gridAnnotationCount = gridAnnotationCount + 1
                 guard let mapController = mapController else { return }
@@ -189,8 +193,18 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
                     annotationsArray.append(anotPin)
                     gridPoints.append(anotPin.coordinate)
                 }
+        completion()
 //            }
 //        }
+    }
+    
+    func fillGrid() {
+        if fourPoints.count > 3 {
+            fillGridPath(firstPoint: fourPoints[0], secondPoint: fourPoints[1], thirdPoint: fourPoints[2], fourthPoint: fourPoints[3])
+            fillGridPath(firstPoint: fourPoints[1], secondPoint: fourPoints[2], thirdPoint: fourPoints[3], fourthPoint: fourPoints[0])
+        }else {
+            Snackbar.show(message: Constants.morePointsMessage, duration: .short)
+        }
     }
     
     //MARK:- Action
@@ -204,7 +218,12 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
                                 panGestureDismissal: true)
         present(popup, animated: true, completion: nil)
         projectDialog.continueCallBack = { projectName in
-            self.addWaypoints()
+            self.addWaypoints() { [weak self] in
+                guard let self = self else { return }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                    self.drawGrid()
+                }
+            }
             self.parameterImageView.isHidden = true
             sender.isHidden = true
             popup.dismiss(animated: true, completion: nil)
@@ -295,12 +314,7 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     }
     
     @IBAction func fillGridBtnClicked(_ sender: UIButton) {
-        if fourPoints.count > 3 {
-            fillGridPath(firstPoint: fourPoints[0], secondPoint: fourPoints[1], thirdPoint: fourPoints[2], fourthPoint: fourPoints[3])
-            fillGridPath(firstPoint: fourPoints[0], secondPoint: fourPoints[3], thirdPoint: fourPoints[2], fourthPoint: fourPoints[1])
-        }else {
-            Snackbar.show(message: Constants.morePointsMessage, duration: .short)
-        }
+//        fillGrid()
     }
     
     @IBAction func testFlightBtnClicked(_ sender: UIButton) {
@@ -334,8 +348,8 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     func radiansToDegrees(radians: Double) -> Double { return radians * 180.0 / .pi }
 
     func getAngleBetweenTwoPoints1(pt1 : CLLocationCoordinate2D, pt2 : CLLocationCoordinate2D) -> Double {
-        var point1 = CLLocation(latitude: pt1.latitude, longitude: pt1.longitude)
-        var point2 = CLLocation(latitude: pt2.latitude, longitude: pt2.longitude)
+        let point1 = CLLocation(latitude: pt1.latitude, longitude: pt1.longitude)
+        let point2 = CLLocation(latitude: pt2.latitude, longitude: pt2.longitude)
 
         let lat1 = degreesToRadians(degrees: point1.coordinate.latitude)
         let lon1 = degreesToRadians(degrees: point1.coordinate.longitude)
@@ -369,8 +383,11 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
                     }
 //                }
                 fourPoints = pt
-                let polygon = MKPolygon(coordinates: pt, count: pt.count)
+                fourPoints = sortConvex(input: fourPoints)
+                let hull = sortConvex(input: pt)
+                let polygon = MKPolygon(coordinates: hull, count: hull.count)
                 mapView.addOverlay(polygon)
+                fillGrid()
             }
         } else {
             Snackbar.show(message: "Create Project First", duration: .middle)
@@ -389,7 +406,7 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     // MARK: - CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations.last as? CLLocation
+        let location = locations.last
         if let coordinate = location?.coordinate {
             userLocation = coordinate
         }
@@ -486,8 +503,8 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     func fillGridPath(firstPoint: CLLocationCoordinate2D , secondPoint: CLLocationCoordinate2D , thirdPoint: CLLocationCoordinate2D , fourthPoint: CLLocationCoordinate2D){
         var top = true
         var gridFillarray = [CLLocationCoordinate2D]()
-        var topLinePoints = getCordinatesBetweenPoints(startPoint: firstPoint, endPoint: secondPoint)
-        var bottomLinePoints = getCordinatesBetweenPoints(startPoint: fourthPoint, endPoint: thirdPoint)
+        let topLinePoints = getCordinatesBetweenPoints(startPoint: firstPoint, endPoint: secondPoint)
+        let bottomLinePoints = getCordinatesBetweenPoints(startPoint: fourthPoint, endPoint: thirdPoint)
         for i in 0..<topLinePoints.count{
             if top{
                 gridFillarray.append(topLinePoints[i])
@@ -501,18 +518,69 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
             }
         }
         self.dummySimulatorFlyPath = gridFillarray
-        var polyline = MKPolyline(coordinates: gridFillarray, count: gridFillarray.count)
-               mapView.addOverlay(polyline)
+        let polyline = MKPolyline(coordinates: gridFillarray, count: gridFillarray.count)
+        mapView.addOverlay(polyline)
         
     }
     func showStatisticsDialog(){
-        var messageStatistics = "No of Images: 20\nDistance: 2Km\nSpeed: 1km/h\nHeight: 40feets\nAltitude: 20"
+        let messageStatistics = "No of Images: 20\nDistance: 2Km\nSpeed: 1km/h\nHeight: 40feets\nAltitude: 20"
         let alertController = UIAlertController(title: "Flight Statistics", message: messageStatistics, preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .default) { (action) in
             print("Ok clicked")
         }
         alertController.addAction(action)
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    //MARK:- Sorted the convex and fixed the grid issue
+    func sortConvex(input: [CLLocationCoordinate2D]) -> [CLLocationCoordinate2D] {
+
+        // X = longitude
+        // Y = latitude
+
+        // 2D cross product of OA and OB vectors, i.e. z-component of their 3D cross product.
+        // Returns a positive value, if OAB makes a counter-clockwise turn,
+        // negative for clockwise turn, and zero if the points are collinear.
+        func cross(P: CLLocationCoordinate2D, _ A: CLLocationCoordinate2D, _ B: CLLocationCoordinate2D) -> Double {
+            let part1 = (A.longitude - P.longitude) * (B.latitude - P.latitude)
+            let part2 = (A.latitude - P.latitude) * (B.longitude - P.longitude)
+            return part1 - part2;
+        }
+
+        // Sort points lexicographically
+        let input2 = input
+        let points = input2.sorted { (first, second) -> Bool in
+            first.longitude == second.longitude ? first.latitude < second.latitude : first.longitude < second.longitude
+        }
+//        var points = gridPoints.sort {
+//            $0.longitude == $1.longitude ? $0.latitude < $1.latitude : $0.longitude < $1.longitude
+//        }
+
+        // Build the lower hull
+        var lower: [CLLocationCoordinate2D] = []
+        for p in points {
+            while lower.count >= 2 && cross(P: lower[lower.count-2], lower[lower.count-1], p) <= 0 {
+                lower.removeLast()
+            }
+            lower.append(p)
+        }
+
+        // Build upper hull
+        var upper: [CLLocationCoordinate2D] = []
+        for p in points.reversed() {
+            while upper.count >= 2 && cross(P: upper[upper.count-2], upper[upper.count-1], p) <= 0 {
+                upper.removeLast()
+            }
+            upper.append(p)
+        }
+
+        // Last point of upper list is omitted because it is repeated at the
+        // beginning of the lower list.
+        upper.removeLast()
+
+        // Concatenation of the lower and upper hulls gives the convex hull.
+        return (upper + lower)
     }
 }
 

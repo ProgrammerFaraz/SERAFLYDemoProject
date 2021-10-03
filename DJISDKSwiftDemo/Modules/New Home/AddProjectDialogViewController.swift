@@ -17,7 +17,10 @@ class AddProjectDialogViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        #if DEBUG
+        titleTextField.text = "test"
+        #endif
         // Do any additional setup after loading the view.
     }
 
