@@ -204,6 +204,8 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
             fillGridPath(firstPoint: fourPoints[0], secondPoint: fourPoints[1], thirdPoint: fourPoints[2], fourthPoint: fourPoints[3])
             isSecondPathToFly = true
             fillGridPath(firstPoint: fourPoints[1], secondPoint: fourPoints[2], thirdPoint: fourPoints[3], fourthPoint: fourPoints[0])
+            gridPoints.removeAll()
+            annotationsArray.removeAll()
             addDroneSimulator()
         }else {
             Snackbar.show(message: Constants.morePointsMessage, duration: .short)
@@ -211,6 +213,16 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     }
     
     func addDroneSimulator() {
+        var anotPin = [MKPointAnnotation]()
+        for i in 0..<(mapView.annotations.count - 1) {
+            if #available(iOS 13.0, *) {
+                anotPin.append(MKPointAnnotation(__coordinate: mapView.annotations[i].coordinate))
+            } else {
+                // Fallback on earlier versions
+            }
+            gridPoints.append(anotPin[i].coordinate)
+        }
+        annotationsArray = anotPin
         guard let userLocation = gridPoints.first else { return }
         if CLLocationCoordinate2DIsValid(userLocation) {
             var region = MKCoordinateRegion()
