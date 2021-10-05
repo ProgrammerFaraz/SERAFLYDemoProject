@@ -200,12 +200,14 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     }
     
     func fillGrid() {
+        dummySimulatorFlyPath.removeAll()
         if fourPoints.count > 3 {
             fillGridPath(firstPoint: fourPoints[0], secondPoint: fourPoints[1], thirdPoint: fourPoints[2], fourthPoint: fourPoints[3])
             isSecondPathToFly = true
             fillGridPath(firstPoint: fourPoints[1], secondPoint: fourPoints[2], thirdPoint: fourPoints[3], fourthPoint: fourPoints[0])
             gridPoints.removeAll()
             annotationsArray.removeAll()
+            dummySimulatorAnnotation = nil
             addDroneSimulator()
         }else {
             Snackbar.show(message: Constants.morePointsMessage, duration: .short)
@@ -227,6 +229,7 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
         if CLLocationCoordinate2DIsValid(userLocation) {
             var region = MKCoordinateRegion()
             region.center = userLocation
+//            self.userLocation = userLocation
             //  region.center = droneLocation!
             region.span.latitudeDelta = 0.001
             region.span.longitudeDelta = 0.001
