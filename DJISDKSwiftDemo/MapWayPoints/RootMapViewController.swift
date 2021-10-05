@@ -235,6 +235,11 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
             region.span.longitudeDelta = 0.001
             
             if dummySimulatorAnnotation == nil {
+                for simulatorAnnotation in mapView.annotations {
+                    if simulatorAnnotation is DummyAircraftAnnotation{
+                        mapView.removeAnnotation(simulatorAnnotation)
+                    }
+                }
                 dummySimulatorAnnotation = DummyAircraftAnnotation(coordinate: userLocation)
                 mapView.addAnnotation(dummySimulatorAnnotation!)
                 mapView?.setRegion(region, animated: true)
@@ -300,7 +305,7 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
         Utilities.setupSideMenu(fromMap: true, viewController: self)
     }
     
-    //MARK:- Reset Action
+    //MARK: - Reset Action
     @IBAction func editBtnAction(_ sender: UIButton) {
 //        if isEditingPoints {
         mapController!.cleanAllPoints(with: mapView)
