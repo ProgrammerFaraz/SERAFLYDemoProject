@@ -668,6 +668,11 @@
                                                         <constraint firstAttribute="bottom" secondItem="l9P-kl-iqQ" secondAttribute="bottom" id="fsm-1U-sgi"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="subTitleLabel" destination="3ms-pu-TrN" id="7Ly-Eg-Zrh"/>
+                                                    <outlet property="titleImageView" destination="BZe-k2-dcu" id="QUJ-P7-dfU"/>
+                                                    <outlet property="titleLabel" destination="Ahq-Rd-TM4" id="ohg-bF-qIm"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
@@ -749,6 +754,13 @@
                                     <outlet property="delegate" destination="up0-cv-50C" id="QIJ-bA-j7p"/>
                                 </connections>
                             </mapView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blue-arrow" translatesAutoresizingMaskIntoConstraints="NO" id="TpO-mS-3BD">
+                                <rect key="frame" x="0.0" y="468" width="24.5" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24.5" id="4Ta-JV-uez"/>
+                                    <constraint firstAttribute="height" constant="80" id="516-eL-Qdc"/>
+                                </constraints>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dCO-Ic-rrN">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
                                 <subviews>
@@ -927,6 +939,13 @@
                                     <action selector="testFlightBtnClicked:" destination="up0-cv-50C" eventType="touchUpInside" id="IVg-pg-FPF"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wao-ku-sIE">
+                                <rect key="frame" x="-6.5" y="448" width="37.5" height="120"/>
+                                <connections>
+                                    <action selector="backBtnTapped:" destination="Yi9-kJ-Ik4" eventType="touchUpInside" id="2ns-vU-vzz"/>
+                                    <action selector="showHideSidePanel:" destination="up0-cv-50C" eventType="touchUpInside" id="TQS-kf-hoQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RKv-h7-oLx"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -941,12 +960,16 @@
                             <constraint firstItem="Bgc-eD-yUv" firstAttribute="top" secondItem="3tS-Zm-0hr" secondAttribute="bottom" constant="25" id="Oar-rW-mAH"/>
                             <constraint firstItem="cyj-er-K1z" firstAttribute="height" secondItem="j15-Om-NY6" secondAttribute="height" multiplier="1.25" id="PPZ-2Z-EdX"/>
                             <constraint firstItem="RKv-h7-oLx" firstAttribute="trailing" secondItem="dCO-Ic-rrN" secondAttribute="trailing" id="PgP-Az-VoJ"/>
+                            <constraint firstItem="Wao-ku-sIE" firstAttribute="centerX" secondItem="TpO-mS-3BD" secondAttribute="centerX" id="Qed-yd-PNz"/>
                             <constraint firstItem="j5S-R0-esQ" firstAttribute="leading" secondItem="j4m-Uw-tJU" secondAttribute="leading" constant="30" id="She-EO-lUA"/>
                             <constraint firstItem="Bgc-eD-yUv" firstAttribute="centerX" secondItem="3tS-Zm-0hr" secondAttribute="centerX" id="Spm-4u-Zth"/>
                             <constraint firstAttribute="bottom" secondItem="j4m-Uw-tJU" secondAttribute="bottom" id="Un5-j4-cye"/>
+                            <constraint firstItem="Wao-ku-sIE" firstAttribute="width" secondItem="TpO-mS-3BD" secondAttribute="width" multiplier="1.5102" id="UoF-PK-yA0"/>
+                            <constraint firstItem="TpO-mS-3BD" firstAttribute="leading" secondItem="j4m-Uw-tJU" secondAttribute="leading" id="VLl-80-Ghh"/>
                             <constraint firstItem="j15-Om-NY6" firstAttribute="bottom" secondItem="j4m-Uw-tJU" secondAttribute="bottom" constant="-45" id="Vrk-ag-R87"/>
                             <constraint firstItem="cyj-er-K1z" firstAttribute="width" secondItem="j15-Om-NY6" secondAttribute="width" multiplier="1.25" id="Vyq-Cr-Si1"/>
                             <constraint firstItem="j4m-Uw-tJU" firstAttribute="top" secondItem="dCO-Ic-rrN" secondAttribute="bottom" id="X1k-m2-G5i"/>
+                            <constraint firstItem="Wao-ku-sIE" firstAttribute="height" secondItem="TpO-mS-3BD" secondAttribute="height" multiplier="1.5" id="c9U-hb-xho"/>
                             <constraint firstItem="dCO-Ic-rrN" firstAttribute="top" secondItem="Xuh-bu-btM" secondAttribute="top" id="dTT-0Y-RhO"/>
                             <constraint firstItem="j5S-R0-esQ" firstAttribute="top" secondItem="j4m-Uw-tJU" secondAttribute="top" constant="50" id="fN9-dy-Y6t"/>
                             <constraint firstItem="3tS-Zm-0hr" firstAttribute="centerY" secondItem="j4m-Uw-tJU" secondAttribute="centerY" id="fNe-JI-TaC"/>
@@ -954,12 +977,16 @@
                             <constraint firstItem="9no-Ni-hJf" firstAttribute="centerX" secondItem="j5S-R0-esQ" secondAttribute="centerX" id="hcA-2k-2zB"/>
                             <constraint firstItem="j15-Om-NY6" firstAttribute="top" secondItem="cyj-er-K1z" secondAttribute="bottom" constant="15" id="jRV-TB-2L5"/>
                             <constraint firstItem="9no-Ni-hJf" firstAttribute="height" secondItem="j5S-R0-esQ" secondAttribute="height" multiplier="1.5" id="qwb-gc-6of"/>
+                            <constraint firstItem="TpO-mS-3BD" firstAttribute="centerY" secondItem="j4m-Uw-tJU" secondAttribute="centerY" id="sGt-TN-bQM"/>
+                            <constraint firstItem="Wao-ku-sIE" firstAttribute="centerY" secondItem="TpO-mS-3BD" secondAttribute="centerY" id="vxS-ca-RxC"/>
                             <constraint firstItem="9no-Ni-hJf" firstAttribute="top" secondItem="j5S-R0-esQ" secondAttribute="bottom" constant="15" id="zfz-uy-vkY"/>
                         </constraints>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="arrowBtn" destination="Wao-ku-sIE" id="bVi-KZ-wt4"/>
+                        <outlet property="arrowImage" destination="TpO-mS-3BD" id="Nxh-By-qxf"/>
                         <outlet property="createProjectBtn" destination="Bgc-eD-yUv" id="aM0-rk-g3i"/>
                         <outlet property="editBtn" destination="j5S-R0-esQ" id="433-ZF-3Zj"/>
                         <outlet property="mapView" destination="j4m-Uw-tJU" id="vf7-Ew-nRO"/>

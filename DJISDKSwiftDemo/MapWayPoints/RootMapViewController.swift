@@ -37,6 +37,8 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     @IBOutlet private var hsLabel: UILabel!
     @IBOutlet private var vsLabel: UILabel!
     @IBOutlet private var altitudeLabel: UILabel!
+    @IBOutlet weak var arrowImage: UIImageView!
+    @IBOutlet weak var arrowBtn: UIButton!
     private var droneLocation: CLLocationCoordinate2D?
     // End
     
@@ -101,6 +103,8 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.arrowImage.isHidden = true
+        self.arrowBtn.isHidden = true
         NotificationCenter.default.addObserver(self, selector: #selector(sideMenuProjectTapped(_:)), name: .projectTapped, object: nil)
          startUpdateLocation()
     }
@@ -268,6 +272,10 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
             self.parameterImageView.isHidden = true
             sender.isHidden = true
             popup.dismiss(animated: true, completion: nil)
+            self.arrowImage.isHidden = false
+            self.arrowBtn.isHidden = false
+            let vc = NewTemplateViewController.initFromStoryboard(name: Storyboards.Home)
+            self.presentDetail(vc)
         }
     }
     
@@ -313,6 +321,8 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
         mapView.removeOverlays(mapView.overlays)
         self.parameterImageView.isHidden = false
         self.createProjectBtn.isHidden = false
+        self.arrowImage.isHidden = true
+        self.arrowBtn.isHidden = true
         fourPoints.removeAll()
         gridPoints.removeAll()
         dummySimulatorAnnotation = nil
@@ -334,6 +344,12 @@ class RootMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     }
     
     //MARK:- Action
+    
+    @IBAction func showHideSidePanel(_ sender: UIButton) {
+        let vc = NewTemplateViewController.initFromStoryboard(name: Storyboards.Home)
+        self.presentDetail(vc)
+    }
+    
     @IBAction func focusMapAction(_ sender: UIButton) {
         
     }

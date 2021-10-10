@@ -232,3 +232,15 @@ extension Notification.Name {
     static let projectTapped = Notification.Name("projectTapped")
     static let quickAccessAppeared = Notification.Name("quickAccessAppeared")
 }
+
+extension UIViewController {
+    func presentDetail(_ viewControllerToPresent: UIViewController) {
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromRight
+        transition.timingFunction = CAMediaTimingFunction(name:CAMediaTimingFunctionName.easeInEaseOut)
+        self.view.window!.layer.add(transition, forKey: kCATransition)
+        present(viewControllerToPresent, animated: false, completion: nil)
+    }
+}
